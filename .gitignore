@@ -1,0 +1,7 @@
+
+.DS_Store
+scripts/.DS_Store
+lib/api/.DS_Store
+lib/.DS_Store
+node_modules/
+
