@@ -1,4 +1,4 @@
-# 🍬 Candy Cart
+# 🍬Candy Cart
 
 BETA
 
@@ -21,3 +21,5 @@ Install with zip.
 Download [here](https://github.com/GeraldHost/candy-cart/archive/master.zip) and upload to Wordpress via the plugin uploader OR copy the zip file to your plugin folder and unzip it.
 
 Read the wiki for more information about how to use Candy Cart
+
+🍬
