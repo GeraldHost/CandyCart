@@ -1,4 +1,4 @@
-# Candy Cart
+# 🍬 Candy Cart
 
 BETA
 
