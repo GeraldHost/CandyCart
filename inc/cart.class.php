@@ -1,6 +1,6 @@
 <?php
-require CANDY_PATH . 'inc/tokens.class.php';
-require CANDY_PATH . 'inc/product.class.php';
+require CANDY_PATH . '/inc/tokens.class.php';
+require CANDY_PATH . '/inc/product.class.php';
 
 class Candy_Cart {
 
@@ -124,16 +124,19 @@ class Candy_Cart {
 	public function calculateTotals()
 	{
 		$sum = 0;
+		$shipping = 0;
 		if(!empty($this->items)){
 			foreach($this->items as $item){
-				$sum += ((int)$item->qty * (int)$item->product->meta['price']);
+				$sum += ((int)$item['qty'] * (int)$item['product']->meta['price']);
+				$shipping = $item['product']->meta['shipping_cost'] > $shipping ?
+					$item['product']->meta['shipping_cost'] : $shipping;
 			}
 		}
 
 		$this->totals = [
 			'sub_total' => $sum,
 			'tax' => $sum * apply_filters('candy_tax_percentage', 0),
-			'shipping' => apply_filters('candy_shipping_cost', 0),
+			'shipping' => $shipping,
 		];
 	}
 

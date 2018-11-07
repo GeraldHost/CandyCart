@@ -98,6 +98,7 @@ class Candy_Order {
 	{
 		// charge customer
 		do_action('candy_order_charge');
+		
 		return true;
 	}
 

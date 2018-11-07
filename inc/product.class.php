@@ -11,6 +11,7 @@ class Candy_Product {
 		$post = get_post($id);
 		$price = get_post_meta($id, Candy_Product::getPriceField(), true) ?: 0;
 		$post->meta = [
+			'shipping_cost' => self::getShippingCode($id),
 			'price' => $price,
 		];
 
@@ -48,6 +49,15 @@ class Candy_Product {
 			new Exception('Post type invalid. Allowed post type is ' . Candy_Product::getProductPostType());
 		}
 		return is_string( $post_type ) ? true : false;
+	}
+
+	static public function getShippingCode(
+		$id)
+	{
+		$shippingCostFieldKey = apply_filters('candy_set_product_shipping_field', 'shipping_cost');
+		$shippingCost = get_post_meta($id, $shippingCostFieldKey, true);
+		$shippingCost = apply_filters("candy_product_" . $id . "_shipping_cost", $shippingCost);
+		return apply_filters('candy_product_shipping_cost', $shippingCost);
 	}
 
 }
