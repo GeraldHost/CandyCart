@@ -27,7 +27,7 @@
 
 <p><b>Order</b></p>
 <?php $totals = unserialize(get_post_meta(get_the_ID(), 'totals', true)); ?>
-<p>Sub Total: £<?= number_format($totals['sub_total']/100, 2); ?></p>
-<p>Shipping Total: £<?= number_format($totals['shipping']/100, 2); ?></p>
-<p>Tax Total: £<?= number_format($totals['tax']/100, 2); ?></p>
-<p>Total: £<?= number_format(($totals['sub_total'] + $totals['shipping'] + $totals['tax'])/100, 2); ?></p>
+<p>Sub Total: <?= Candy_Store::getCurrencySymbol() . number_format($totals['sub_total']/100, 2); ?></p>
+<p>Shipping Total: <?= Candy_Store::getCurrencySymbol() . number_format($totals['shipping']/100, 2); ?></p>
+<p>Tax Total: <?= Candy_Store::getCurrencySymbol() . number_format($totals['tax']/100, 2); ?></p>
+<p>Total: <?= Candy_Store::getCurrencySymbol() . number_format(($totals['sub_total'] + $totals['shipping'] + $totals['tax'])/100, 2); ?></p>

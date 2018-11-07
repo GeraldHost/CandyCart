@@ -24,6 +24,7 @@ define('CANDY_URL', plugin_dir_url(__FILE__));
 
 require_once CANDY_PATH . 'inc/cart.class.php';
 require_once CANDY_PATH . 'inc/order.class.php';
+require_once CANDY_PATH . 'inc/store.class.php';
 require_once CANDY_PATH . '/candy-admin.php';
 require_once CANDY_PATH . '/candy-ajax.php';
 

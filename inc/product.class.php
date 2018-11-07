@@ -1,7 +1,4 @@
 <?php
-
-add_filter('candy_set_post_type', [(new Candy_Product), 'getProductPostType']);
-
 class Candy_Product {
 
 	static public function find(
@@ -32,7 +29,7 @@ class Candy_Product {
 
 	static public function getQtyField()
 	{
-		return apply_filters('candy_set_product_price_field', 'qty');
+		return apply_filters('candy_set_product_qty_field', 'qty');
 	}
 
 	static public function updateProductQty(
