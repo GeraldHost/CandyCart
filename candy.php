@@ -5,7 +5,7 @@
 *	@package Candy
 *
 *	Plugin Name: Candy
-*	Plugin URI: https://jacobford.co.uk/candy
+*	Plugin URI: https://jacobford.co.uk
 *	Description: A shopping cart for Wordpress
 *	Version: 1.0.0
 *	Author: Jacob Ford
