@@ -89,3 +89,57 @@ function candy_register_orders_post_type()
 	register_post_type('orders', $args);
 }
 add_action('init', 'candy_register_orders_post_type');
+
+/**
+ *  Adds custom columns to the orders list
+ */
+function set_custom_orders_columns($columns) {
+    $columns['status'] = __('Status');
+    $columns['address'] = __('Address');
+    $columns['total'] = __('Total');
+
+    return $columns;
+}
+add_filter( 'manage_orders_posts_columns', 'set_custom_orders_columns' );
+
+/**
+ *  Sets the data for our custom columns in the orders list
+ */
+function custom_orders_column( $column, $post_id ) {
+    switch ( $column ) {
+        case 'status':
+            $status = get_post_meta($post_id, 'status', true);
+            echo empty($status) ? __('N/A') : $status;
+            break;
+
+        case 'address':
+            $order_data = array(
+                get_post_meta($post_id, 'customer_name', true),
+                get_post_meta($post_id, 'shipping_address', true),
+                get_post_meta($post_id, 'shipping_address_1', true),
+                get_post_meta($post_id, 'shipping_address_2', true),
+                strtoupper(get_post_meta($post_id, 'shipping_postcode', true)),
+            );
+
+            foreach ($order_data as $address_line) if (!empty($address_line)) {
+                echo ucwords($address_line);
+
+                if (next($order_data)) {
+                    echo ',<br>';
+                }
+            }
+            break;
+
+        case 'total':
+            $total = 0;
+            $totals = unserialize(get_post_meta($post_id, 'totals', true));
+
+            foreach ($totals as $total_partial) if (is_int($total_partial)) {
+                $total += $total_partial;
+            }
+
+            echo Candy_Store::getCurrencySymbol() . number_format($total, 2);
+            break;
+    }
+}
+add_action( 'manage_orders_posts_custom_column' , 'custom_orders_column', 10, 2 );
