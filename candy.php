@@ -29,8 +29,3 @@ require_once CANDY_PATH . '/candy-admin.php';
 require_once CANDY_PATH . '/candy-ajax.php';
 
 $candy = new Candy_Cart;
-
-$candy->add(5, 1);
-var_dump($candy->get()); 
-
-exit;
